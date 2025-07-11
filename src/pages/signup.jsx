@@ -34,7 +34,7 @@ function Signup() {
     <section className="mx-auto">
       <Navbar />
 
-      <main className="h-screen grid md:grid-cols-2 py-2 px-12 text-sm">
+      <main className="h-screen grid md:grid-cols-2 py-2 px-12">
         <div className="hidden md:flex md:justify-between">
           <img
             src={bgImage1}

@@ -4,7 +4,7 @@ import Navbar from "../components/navbar";
 
 function SignIn() {
   return (
-    <section className="container text-sm">
+    <section className="container">
       <Navbar />
       <main className="h-screen grid">
         <div className="hidden">

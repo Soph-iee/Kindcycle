@@ -5,7 +5,7 @@ function ProductPage() {
   return (
     <>
       <header>
-        <nav className="nav-bar flex flex-row text-sm capitalize gap-5 p-3 border-b-1 border-gray-400 items-center">
+        <nav className="nav-bar flex flex-row capitalize gap-5 p-3 border-b-1 border-gray-400 items-center">
           <div className="logo">
             <h1 className="uppercase text-signup-btn font-mono font-bold">
               <Link to="/"> kindcycle</Link>

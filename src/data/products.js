@@ -6,7 +6,7 @@ const kindCycleItems = [
     condition: "Gently Used",
     size: "L",
     location: "Bodija, Ibadan",
-    image: "../assets/img-1.jpg",
+    image: "src/assets/img-1.jpg",
     description:
       "Classic blue denim jacket in great condition. Perfect for casual wear.",
     owner: "Tunde A.",
