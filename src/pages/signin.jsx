@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import bgImage2 from "../assets/signin.jpg";
+import bgImage2 from "../../public/assets/signin.jpg";
 import Navbar from "../components/navbar";
 
 function SignIn() {

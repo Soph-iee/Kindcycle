@@ -1,6 +1,6 @@
 // import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
-import bgImage1 from "../assets/signup.jpg";
+import bgImage1 from '../../public/assets/signup.jpg'
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
