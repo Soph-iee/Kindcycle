@@ -6,7 +6,7 @@ function SignIn() {
   return (
     <section className="container">
       <Navbar />
-      <main className="h-screen grid justify-items-center  content-center">
+      <main className="grid justify-items-center  content-center">
         <div className="hidden">
           <img
             src={bgImage2}
