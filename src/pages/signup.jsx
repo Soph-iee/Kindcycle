@@ -34,7 +34,7 @@ function Signup() {
     <section className="mx-auto">
       <Navbar />
 
-      <main className="h-screen grid md:grid-cols-2 py-2 px-12">
+      <main className="h-screen grid justify-items-center  content-center md:grid-cols-2 py-2 px-12">
         <div className="hidden md:flex md:justify-between">
           <img
             src={bgImage1}
@@ -48,7 +48,9 @@ function Signup() {
             action="#"
             onSubmit={handleSubmit}
           >
-            <h1 className="capitalize text-lg text-center pb-2 font-semibold">sign up </h1>
+            <h1 className="capitalize text-lg text-center pb-2 font-semibold">
+              sign up{" "}
+            </h1>
             <button className="border border-gray-800 py-2 w-full rounded text-signup-btn  capitalize">
               <a href="#">
                 <span>
@@ -155,9 +157,7 @@ function Signup() {
               </span>
             </div>
 
-            <button
-              className="sign-up-btn border  border-signup-btn text-left self-baseline my-2 p-1.5  rounded capitalize text-white bg-signup-btn"
-            >
+            <button className="sign-up-btn border  border-signup-btn text-left self-baseline my-2 p-1.5  rounded capitalize text-white bg-signup-btn">
               sign up
             </button>
           </form>
