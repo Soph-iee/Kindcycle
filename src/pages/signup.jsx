@@ -1,35 +1,25 @@
 // import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
-import bgImage1 from '../../public/assets/signup.jpg'
-import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import bgImage1 from "../../public/assets/signup.jpg";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
+// import { Navigate, useNavigate } from "react-router-dom";
 
 function Signup() {
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    password: "",
-    role: "",
-  });
-  const [error, setError] = useState(false);
-  const navigate = useNavigate();
-  const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
-  const checkError = () => {
-    if (!user.name || !user.email || !user.role || !user.password) {
-      return setError(true);
-    } else {
-      console.log("complete details");
-      navigate("/");
-      setError(false);
-    }
+  const navigate= useNavigate()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm();
+  const formSubmit = async (data) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log(data);
+    window.alert(`welcome, ${data.name}`);
+    navigate('/')
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    checkError();
-  };
   return (
     <section className="mx-auto">
       <Navbar />
@@ -45,8 +35,7 @@ function Signup() {
         <div className="md:flex md:py-4 md:px-32 md:flex-col ">
           <form
             className=" flex flex-col gap-1"
-            action="#"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(formSubmit)}
           >
             <h1 className="capitalize text-lg text-center pb-2 font-semibold">
               sign up{" "}
@@ -67,11 +56,11 @@ function Signup() {
                 continue with facebook
               </a>
             </button>
-            {error && (
+            {/*             
               <p className="text-red-700 font-bold">
                 ! Please input all fields
-              </p>
-            )}
+              </p> */}
+
             <div className="name">
               <label
                 htmlFor="name"
@@ -83,11 +72,15 @@ function Signup() {
                 type="text"
                 id="name"
                 className="border border-gray-400 p-1.5 w-full rounded outline-gray-500"
-                name="name"
-                value={user.name}
-                onChange={handleChange}
+                placeholder="Chukwuma Adekunle"
+                {...register("name", { required: "Name is required" })}
               />
             </div>
+            {errors.name && (
+              <p className="text-red-500 text-xs font-bold">
+                {errors.name.message}
+              </p>
+            )}
             <div className="email">
               <label
                 htmlFor="email"
@@ -99,11 +92,17 @@ function Signup() {
                 type="email"
                 id="email"
                 className="border border-gray-400 p-1.5 w-full rounded outline-gray-500"
-                name="email"
-                value={user.email}
-                onChange={handleChange}
+                {...register("email", {
+                  required: "email is required",
+                  pattern: /^\S+@\S+$/i,
+                })}
               />
             </div>
+            {errors.email && (
+              <p className="text-red-500 text-xs font-bold">
+                {errors.email.message}
+              </p>
+            )}
             <div className="role">
               <label
                 htmlFor="role"
@@ -114,16 +113,19 @@ function Signup() {
               <select
                 id="role"
                 className="border border-gray-400 p-1.5 px-3  w-full rounded text-gray-600 outline-gray-400"
-                value={user.role}
-                onChange={handleChange}
-                name="role"
+                {...register("role", { required: "role is required" })}
               >
-                <option>Select an option</option>
+                <option></option>
                 <option value="CON">Contributor</option>
                 <option value="ADP-INV">Seeker</option>
                 <option value="ADP-ORG">Seeker-Organization</option>
               </select>
             </div>
+            {errors.role && (
+              <p className="text-red-500 text-xs font-bold">
+                {errors.role.message}
+              </p>
+            )}
             <div className="password">
               <label
                 htmlFor="password"
@@ -135,14 +137,23 @@ function Signup() {
                 type="password"
                 id="password"
                 className="border border-gray-400 p-1.5 w-full rounded outline-gray-400"
-                value={user.password}
-                name="password"
-                onChange={handleChange}
+                {...register("password", {
+                  required: "password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Passsword must have at least 8 characters",
+                  },
+                })}
               />
               <p className="text-gray-600 text-xs">
                 Password must have 8 characters
               </p>
             </div>
+            {errors.password && (
+              <p className="text-red-500 text-xs font-bold">
+                {errors.password.message}
+              </p>
+            )}
             <div className="text-xs">
               <input type="checkbox" />
               <span className="pl-2">
@@ -157,8 +168,11 @@ function Signup() {
               </span>
             </div>
 
-            <button className="sign-up-btn border  border-signup-btn text-left self-baseline my-2 p-1.5  rounded capitalize text-white bg-signup-btn">
-              sign up
+            <button
+              className="sign-up-btn border  border-signup-btn text-left self-baseline my-2 p-1.5  rounded capitalize text-white bg-signup-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting" : "sign up"}
             </button>
           </form>
           <p>
