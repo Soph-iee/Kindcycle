@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // import { Navigate, useNavigate } from "react-router-dom";
 
 function Signup() {
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,8 +16,7 @@ function Signup() {
   const formSubmit = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(data);
-    window.alert(`welcome, ${data.name}`);
-    navigate('/')
+    navigate("/");
   };
 
   return (
@@ -172,7 +171,7 @@ function Signup() {
               className="sign-up-btn border  border-signup-btn text-left self-baseline my-2 p-1.5  rounded capitalize text-white bg-signup-btn"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Submitting" : "sign up"}
+              {isSubmitting ? "Please wait" : "sign up"}
             </button>
           </form>
           <p>

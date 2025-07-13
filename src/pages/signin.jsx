@@ -1,8 +1,23 @@
 import { Link } from "react-router-dom";
 import bgImage2 from "../../public/assets/signin.jpg";
 import Navbar from "../components/navbar";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm();
+
+  const formSubmit = async (data) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log(data);
+    window.alert(`welcome, ${data.name}`);
+    navigate("/product-page");
+  };
   return (
     <section className="container">
       <Navbar />
@@ -15,8 +30,13 @@ function SignIn() {
           />
         </div>
         <div className="flex justify-center ">
-          <form className=" flex flex-col gap-1" action="#">
-            <h1 className="capitalize text-center font-semibold py-4">login page</h1>
+          <form
+            className=" flex flex-col gap-1"
+            onSubmit={handleSubmit(formSubmit)}
+          >
+            <h1 className="capitalize text-center font-semibold py-4">
+              login page
+            </h1>
             <button className="border border-gray-800 py-2   w-full rounded text-signup-btn capitalize">
               <a href="#">
                 <span className="pr-2">
@@ -44,8 +64,14 @@ function SignIn() {
                 type="text"
                 id="username"
                 className="border border-gray-400 py-2 w-full rounded"
+                {...register("name", { required: "Name is required" })}
               />
             </div>
+            {errors.name && (
+              <p className="text-red-500 text-xs font-bold">
+                {errors.name.message}
+              </p>
+            )}
             <div>
               <label
                 htmlFor="password"
@@ -57,10 +83,25 @@ function SignIn() {
                 type="password"
                 id="password"
                 className="border border-gray-400 py-2 w-full rounded"
+                {...register("password", {
+                  required: "password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Passsword must have at least 8 characters",
+                  },
+                })}
               />
             </div>
-            <button className=" sign-in-btn border  border-signup-btn text-left self-baseline py-1 px-3 my-4 rounded  capitalize text-white bg-signup-btn">
-              <Link to="/product-page">sign in</Link>
+            {errors.password && (
+              <p className="text-red-500 text-xs font-bold">
+                {errors.password.message}
+              </p>
+            )}
+            <button
+              className=" sign-in-btn border  border-signup-btn text-left self-baseline py-1 px-3 my-4 rounded  capitalize text-white bg-signup-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Logging in" : "Login"}
             </button>
             <p>
               Don't have an account yet?
