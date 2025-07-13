@@ -26,7 +26,7 @@ function ProductPage() {
         </nav>
       </header>
       <section className="flex flex-col justify-center items-center">
-        <main className="max-w-10/12 flex flex-col items-center justify-center">
+        <main className="max-w-99/100 flex flex-col items-center justify-center">
           <h1 className="text-lg font-semibold py-2">Product page</h1>
           <section className="grid grid-cols-2 text-xs gap-4  ">
             {kindCycleItems.map((item) => {
