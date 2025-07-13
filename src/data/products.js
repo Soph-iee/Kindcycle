@@ -40,7 +40,7 @@ const kindCycleItems = [
     condition: "Like New",
     size: "0-6 months",
     location: "Mokola, Ibadan",
-    image: "../../public/assets/img-4.jpg",
+    image: "assets/img-4.jpg",
     description: "Pack of 5 cotton onesies in excellent condition.",
     owner: "Blessing I.",
   },
